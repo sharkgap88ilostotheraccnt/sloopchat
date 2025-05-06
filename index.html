@@ -77,5 +77,28 @@
       chat.scrollTop = chat.scrollHeight; // Auto-scroll to the bottom
     }, 5000); // Every 5 seconds
   </script>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyBAY-aGQTdCh2tFzJziT71U6ybLqk-a1J0",
+    authDomain: "sloopchat-489c4.firebaseapp.com",
+    projectId: "sloopchat-489c4",
+    storageBucket: "sloopchat-489c4.firebasestorage.app",
+    messagingSenderId: "475797465106",
+    appId: "1:475797465106:web:f4ac73b68b999633b250cb",
+    measurementId: "G-XYMNDXL1JV"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
 </body>
 </html>
