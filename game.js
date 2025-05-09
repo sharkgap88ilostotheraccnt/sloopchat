@@ -1,5 +1,46 @@
 // game.js
+// Connect to the WebSocket server
+const socket = new WebSocket('ws://localhost:8080');
 
+// Handle connection open
+socket.addEventListener('open', () => {
+  console.log('Connected to the WebSocket server!');
+
+  // Send a message to the server
+  const joinMessage = { type: 'join', playerID: generatePlayerID() };
+  socket.send(JSON.stringify(joinMessage));
+});
+
+// Handle incoming messages
+socket.addEventListener('message', (event) => {
+  const data = JSON.parse(event.data);
+  console.log('Message from server:', data);
+
+  // Handle specific message types
+  if (data.type === 'playerJoined') {
+    console.log(data.message);
+    // Update the game state (e.g., add a new player)
+  } else if (data.type === 'playerLeft') {
+    console.log(data.message);
+    // Update the game state (e.g., remove a player)
+  }
+});
+
+// Handle connection close
+socket.addEventListener('close', () => {
+  console.log('Disconnected from the WebSocket server.');
+});
+
+// Generate a unique player ID
+function generatePlayerID() {
+  return 'player-' + Math.floor(Math.random() * 10000);
+}
+
+// Example: Send player movement data to the server
+document.addEventListener('keydown', (e) => {
+  const movement = { type: 'move', key: e.key };
+  socket.send(JSON.stringify(movement));
+});
 // Get the canvas and its context
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
